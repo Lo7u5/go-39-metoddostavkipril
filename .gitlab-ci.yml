@@ -5,7 +5,8 @@ stages:
 
 variables:
   PUBLIC_REGISTRY_HOST: docker.io
-  PUBLIC_REGISTRY_OWNER: cyymrak@gmail.com
+  PUBLIC_REGISTRY_USER: cyymrak@gmail.com
+  PUBLIC_REGISTRY_OWNER: Lo7u5
   PUBLIC_REGISTRY_APP_NAME: module-39
   CI_COMMIT_REF_NAME: latest
 
@@ -36,7 +37,7 @@ build_image:stable:
   services:
     - docker:dind
   script:
-    - docker login -u "${PUBLIC_REGISTRY_OWNER}" -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+    - docker login -u "${PUBLIC_REGISTRY_USER}" -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
     - docker build -t "${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}":${CI_COMMIT_REF_NAME} ./
     - docker push "${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}":${CI_COMMIT_REF_NAME}
   only:
@@ -48,7 +49,7 @@ build_image:latest:
   services:
     - docker:dind
   script:
-    - docker login -u "${PUBLIC_REGISTRY_OWNER}" -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+    - docker login -u "${PUBLIC_REGISTRY_USER}" -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
     - docker build -t "${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}":latest ./
     - docker push "${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}":latest
   when: manual
