@@ -8,7 +8,6 @@ variables:
   PUBLIC_REGISTRY_USER: cyymrak@gmail.com
   PUBLIC_REGISTRY_OWNER: lo7u5
   PUBLIC_REGISTRY_APP_NAME: module-39
-  CI_COMMIT_REF_NAME: latest
 
 build_app:
   stage: build
