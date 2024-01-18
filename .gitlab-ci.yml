@@ -36,7 +36,6 @@ build_image:stable:
   services:
     - docker:dind
   script:
-    - RUN apk --no-cache add git
     - docker login -u ${PUBLIC_REGISTRY_OWNER} --password-stdin ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
@@ -49,7 +48,6 @@ build_image:latest:
   services:
     - docker:dind
   script:
-    - RUN apk --no-cache add git
     - docker login -u ${PUBLIC_REGISTRY_OWNER} --password-stdin ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest ./
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
